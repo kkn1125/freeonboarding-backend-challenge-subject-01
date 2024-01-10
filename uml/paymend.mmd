@@ -1,0 +1,65 @@
+classDiagram
+  class Client {
+    String name
+    -Card card
+    Array~Cart~ cartList
+    constructor(name, money)
+    addCart(cart: Cart) void
+    cardPay(totalPayMoney: number) void
+    checkMoney() number
+    isPayable(price: number) number
+  }
+
+  class Owner {
+    -paymentHistory: Map~Client, Payment~
+    constructor(name)
+    createPayment(client: Client) Payment
+    requestPay(client: Client) void
+  }
+
+  class Card {
+    name: string
+    -money: number
+    constructor(name, money)
+    checkMoney() number
+    pay(price: number) void
+    paySign(payMoney: number) boolean
+  }
+
+  class Payment {
+    -totalPrice: number
+    payMoney() number
+    writePayment(prices: Array~number~) void
+  }
+
+  class Product {
+    name: string
+    -price: number
+    -discountPolicy: DiscountPolicy
+    constructor(name, price, discountPolicy)
+    discountOrNotPrice() number
+  }
+
+  class DiscountPolicy {
+    <<interface>>
+    percentage: number
+  }
+
+  class BasicDiscountPolicy {
+    precentage: number
+  }
+
+  class Cart {
+    -product: Product
+    -quantity: number
+    constructor(name, money)
+    calculate() number
+  }
+
+  Owner ..> Client
+  Owner ..> Payment
+  Client o--> Card
+  Client ..> Cart
+  Cart o..> Product
+  BasicDiscountPolicy ..|> DiscountPolicy
+  Product o--> DiscountPolicy
