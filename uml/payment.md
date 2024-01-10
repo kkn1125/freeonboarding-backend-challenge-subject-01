@@ -8,16 +8,16 @@ classDiagram
     String name
     -Card card
     Array~Cart~ cartList
-
-    isPayable(price: number) number
+    constructor(name, money)
     addCart(cart: Cart) void
     cardPay(totalPayMoney: number) void
     checkMoney() number
+    isPayable(price: number) number
   }
 
   class Owner {
     -paymentHistory: Map~Client, Payment~
-
+    constructor(name)
     createPayment(client: Client) Payment
     requestPay(client: Client) void
   }
@@ -25,22 +25,23 @@ classDiagram
   class Card {
     name: string
     -money: number
-
-    paySign(payMoney: number) boolean
-    pay(price: number) void
+    constructor(name, money)
     checkMoney() number
+    pay(price: number) void
+    paySign(payMoney: number) boolean
   }
 
   class Payment {
     -totalPrice: number
-    writePayment(prices: Array~number~) void
     payMoney() number
+    writePayment(prices: Array~number~) void
   }
 
   class Product {
     name: string
     -price: number
     -discountPolicy: DiscountPolicy
+    constructor(name, price, discountPolicy)
     discountOrNotPrice() number
   }
 
@@ -56,17 +57,17 @@ classDiagram
   class Cart {
     -product: Product
     -quantity: number
-
+    constructor(name, money)
     calculate() number
   }
 
-  Client o..> Card
-  Client o..> Cart
-  Cart o..> Product
-  Product o..> BasicDiscountPolicy
-  BasicDiscountPolicy --|> DiscountPolicy
   Owner ..> Client
   Owner ..> Payment
+  Client o--> Card
+  Client ..> Cart
+  Cart o..> Product
+  BasicDiscountPolicy ..|> DiscountPolicy
+  Product o--> DiscountPolicy
 ```
 
 ## 초안
