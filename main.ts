@@ -6,7 +6,7 @@ import { Product } from "./src/models/product";
 
 const basicDiscountPolicy = new BasicDiscountPolicy();
 
-const owner = new Owner();
+const owner = new Owner('김오너');
 const james = new Client("제임스", 20_000);
 
 const sider = new Product("사이다", 1_500, basicDiscountPolicy);

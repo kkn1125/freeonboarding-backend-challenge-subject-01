@@ -16,4 +16,8 @@ export class Card {
   pay(price: number) {
     this.money -= price;
   }
+
+  checkMoney() {
+    return this.money;
+  }
 }

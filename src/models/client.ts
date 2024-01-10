@@ -3,7 +3,7 @@ import { Cart } from "./cart";
 
 /* 고객은 카드와 카트를 알아야한다. */
 export class Client {
-  private name: string;
+  name: string;
   private card: Card;
   cartList: Cart[] = [];
 
@@ -28,5 +28,9 @@ export class Client {
     if (isPayable) {
       this.card.pay(totalPayMoney);
     }
+  }
+
+  checkMoney() {
+    return this.card.checkMoney();
   }
 }
